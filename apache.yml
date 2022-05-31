@@ -1,0 +1,18 @@
+---
+- name: install the ngnix
+  hosts: all
+  become: true
+  tasks:
+    - name: Ensure that ngnix latest installed
+      apt:
+        name: nginx
+        state: latest
+    - name: copy the content to te web site
+      copy:
+        src: /home/ubuntu/ansible/index.html
+        dest: /var/www/html/
+        mode: 0644 
+    - name: start the services
+      service:
+        name: nginx
+        state: restarted
