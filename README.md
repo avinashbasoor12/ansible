@@ -1,4 +1,5 @@
 # ansible
+yes
 
 To configure ansible we need to first configure defalut file in /etc/nginx/sites-available
 root file should be  root /var/www/html;
