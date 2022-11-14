@@ -1,0 +1,4 @@
+---
+# handlers file for /etc/ansible/roles/apache
+- name: restart apache
+  shell: nohup /usr/local/apache-tomcat-10.0.20/bin/startup.sh

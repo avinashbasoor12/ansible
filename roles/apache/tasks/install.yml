@@ -1,0 +1,21 @@
+- name: to install java and tomcat
+  apt:
+      update_cache: yes
+      cache_valid_time: 3600
+
+- name: install java
+  apt:
+     name: default-jre
+     state: latest
+
+- name: get the package from internet
+  get_url:
+          url: http://mirrors.estointernet.in/apache/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz 
+          dest: /usr/local
+
+- name: untar the downloaded tarfile
+  unarchive:
+            src: /usr/local/apache-tomcat-10.0.20.tar.gz
+            dest: /usr/local
+            remote_src: yes
+

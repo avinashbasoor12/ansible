@@ -1,0 +1,19 @@
+---
+- name: this is to install git
+  hosts: all
+  become: true
+  tasks:
+    - name: to install git package
+      when: inventory_hostname in groups['app-server']
+      ap:
+        name: git
+        state: present
+      tags:
+        - git_install
+    - name: create user in remote
+      when: inventory_hostname in groups['app-server']
+      user:
+        name: xyz
+        state: present
+      tags:
+        - user_creattion

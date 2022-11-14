@@ -1,0 +1,5 @@
+---
+- name: copy the insex.html to destination
+  copy: src=files/index.html dest=/var/www/html
+  notify:
+  - restart apache

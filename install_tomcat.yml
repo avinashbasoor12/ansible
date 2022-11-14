@@ -1,0 +1,31 @@
+---
+- name: to install java and tomcat
+  hosts: all
+  become: yes
+
+  vars_files:
+    - tomcat_var
+  tasks:
+    - name: update reposotory
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: install java
+      apt:
+        name: default-jre
+        state: latest
+
+    - name: get the package from internet
+      get_url:
+        url: "{{ url_path }}"
+        dest: /usr/local
+
+    - name: untar the downloaded tarfile
+      unarchive:
+        src: /usr/local/{{ tomcat_version }}.tar.gz
+        dest: /usr/local
+        remote_src: yes
+
+    - name: start tomcat services
+      shell: nohup /usr/local/{{ tomcat_version }}/bin/startup.sh
