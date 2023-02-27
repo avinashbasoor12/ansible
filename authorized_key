@@ -7,3 +7,7 @@
         user: root
         state: present
         key: "{{lookup('file', '/root/.ssh/id_rsa.pub')}}"
+        
+ ---
+ ansible-playbook auth.yaml --key-file batch1.pem --become
+
